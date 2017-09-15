@@ -6,6 +6,17 @@ Leo Liu
 import csv, random
 
 def random_job(jobdict):
+    """
+    Select a random job based on the provided percentages.
+
+    Select a random job based on percentage in jobdict by calculating total employment rate, generate random number within the range [0,employment rate). Go through all occupations, subtracting the percentage of each from the previously generated random number, until that number is less than the percentage. That job is selected.
+
+    Arg:
+    jobdict(dictonary) contains job sectors as keys, and their respective percentages as values.
+
+    Ret:
+    str the selected job
+    """
     total = 0.0
     for key in jobdict:
         total += jobdict[key]
@@ -15,12 +26,20 @@ def random_job(jobdict):
     for key in jobdict:
         job_percentage = jobdict[key]
         if (random_counter <= job_percentage):
-            print key
             return key
         else:
             random_counter -= job_percentage
 
-def make_dict(csv_in):
+def make_dict_from_csv(csv_in):
+    """
+    Read in csv and generate a dictionary from it.
+
+    Arg:
+    csv_in(filename) : File to be read
+
+    Ret:
+    dictionary : Contains job class and percentage.
+    """
 	csv_dict = {}
 	with open(csv_in, 'rb') as csvfile:
 		occreader = csv.reader(csvfile)
@@ -36,6 +55,6 @@ def make_dict(csv_in):
 	return csv_dict
 
 
-job_dict = make_dict('occupations.csv')
+job_dict = make_dict_from_csv('occupations.csv')
 print(job_dict)
-random_job(job_dict)
+print(random_job(job_dict))

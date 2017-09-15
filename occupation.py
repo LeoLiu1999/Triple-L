@@ -5,7 +5,7 @@ Leo Liu
 '''
 import csv, random
 
-def random_job():
+#def random_job():
 
 def make_dict(csv_in):
 	csv_dict = {}	

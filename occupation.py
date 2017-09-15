@@ -5,8 +5,11 @@ Leo Liu
 '''
 import csv, random
 
-#def random_job():
-
+def random_job(jobdict):
+	total = 0.0
+	for key in jobdict:
+		total += jobdict[key]
+	print total*10
 
 def make_dict(csv_in):
 	csv_dict = {}
@@ -25,3 +28,4 @@ def make_dict(csv_in):
 
 job_dict = make_dict('occupations.csv')
 print(job_dict)
+random_job(job_dict)

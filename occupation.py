@@ -6,10 +6,19 @@ Leo Liu
 import csv, random
 
 def random_job(jobdict):
-	total = 0.0
-	for key in jobdict:
-		total += jobdict[key]
-	print total*10
+    total = 0.0
+    for key in jobdict:
+        total += jobdict[key]
+    print total * 10
+    
+    random_counter = random.random() * total
+    for key in jobdict:
+        job_percentage = jobdict[key]
+        if (random_counter <= job_percentage):
+            print key
+            return key
+        else:
+            random_counter -= job_percentage
 
 def make_dict(csv_in):
 	csv_dict = {}
@@ -25,6 +34,7 @@ def make_dict(csv_in):
 	#This removes 'Total'
 	del csv_dict['Total']
 	return csv_dict
+
 
 job_dict = make_dict('occupations.csv')
 print(job_dict)
